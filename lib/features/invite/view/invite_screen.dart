@@ -695,7 +695,7 @@ class _InviteScreenState extends State<InviteScreen> {
                     // ✅ Groom's parents
                     _buildParentsRow(
                       father: 'Basheer',
-                      mother: 'Jibitha Begam',
+                      mother: 'Jibitha Begam', parents: 'Groom Parents',
                     ),
                   ],
                 ),
@@ -712,13 +712,13 @@ class _InviteScreenState extends State<InviteScreen> {
                           'Her smile brightens every room, and her heart '
                           'is full of kindness and beautiful dreams.',
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 50),
                     // ✅ Bride's parents
 
 
                     _buildParentsRow(
                       father: 'Ikram Basha',
-                      mother: 'Maimun Bee',
+                      mother: 'Maimun Be', parents: 'Bride Parents',
                     ),
                   ],
                 ),
@@ -730,7 +730,7 @@ class _InviteScreenState extends State<InviteScreen> {
     );
   }
 
-  Widget _buildParentsRow({required String father, required String mother}) {
+  Widget _buildParentsRow({required String father, required String mother,required String parents}) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       decoration: BoxDecoration(
@@ -741,7 +741,7 @@ class _InviteScreenState extends State<InviteScreen> {
       child: Column(
         children: [
           Text(
-            'Parents',
+            parents,
             style: GoogleFonts.cinzel(
               fontSize: 9,
               letterSpacing: 2,
@@ -810,7 +810,7 @@ class _InviteScreenState extends State<InviteScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              'بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ',
+'بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ, وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ',
               textAlign: TextAlign.center,
               style: GoogleFonts.cormorantGaramond(
                 fontSize: 20,
