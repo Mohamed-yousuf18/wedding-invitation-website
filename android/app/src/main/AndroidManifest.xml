@@ -30,7 +30,7 @@
         android:minSdkVersion="33" />
 
     <application
-        android:label="my_wedding_app"
+        android:label="Wedding Invitation"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
