@@ -712,7 +712,7 @@ class _InviteScreenState extends State<InviteScreen> {
                           'Her smile brightens every room, and her heart '
                           'is full of kindness and beautiful dreams.',
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 12),
                     // ✅ Bride's parents
 
 

@@ -213,9 +213,9 @@ class SplashScreen extends StatelessWidget {
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../controller/splash_controller.dart';
-import '../../../app/theme/app_theme.dart';
-import '../../../widgets/floating_hearts_widget.dart';
+import 'package:my_wedding_app/app/theme/app_theme.dart';
+import 'package:my_wedding_app/features/splash/controller/splash_controller.dart';
+import 'package:my_wedding_app/widgets/floating_hearts_widget.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
