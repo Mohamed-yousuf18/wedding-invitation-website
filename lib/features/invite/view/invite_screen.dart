@@ -590,7 +590,7 @@ class _InviteScreenState extends State<InviteScreen> {
                 _buildDivider(),
                 _buildLocationSection(),
                 _buildDivider(),
-                _buildRsvpSection(),
+               // _buildRsvpSection(),
              //   _buildShareSection(),
                 const SizedBox(height: 40),
               ],
