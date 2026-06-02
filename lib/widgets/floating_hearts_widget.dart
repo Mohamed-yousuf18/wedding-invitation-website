@@ -1,3 +1,4 @@
+/*
 // ============================================================
 // widgets/floating_hearts_widget.dart
 //
@@ -74,6 +75,110 @@ class _FloatingHeartsWidgetState extends State<FloatingHeartsWidget>
               child: Text(
                 p.emoji,
                 style: TextStyle(fontSize: p.size),
+              ),
+            ),
+          );
+        },
+      )).toList(),
+    );
+  }
+}
+
+class _HeartParticle {
+  final AnimationController controller;
+  final double left;
+  final double delay;
+  final double speed;
+  final double size;
+  final String emoji;
+
+  _HeartParticle({
+    required this.controller,
+    required this.left,
+    required this.delay,
+    required this.speed,
+    required this.size,
+    required this.emoji,
+  });
+}*/
+
+
+// ============================================================
+// widgets/floating_hearts_widget.dart — ScreenUtil responsive
+// ============================================================
+
+import 'dart:math' as math;
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class FloatingHeartsWidget extends StatefulWidget {
+  const FloatingHeartsWidget({super.key});
+
+  @override
+  State<FloatingHeartsWidget> createState() => _FloatingHeartsWidgetState();
+}
+
+class _FloatingHeartsWidgetState extends State<FloatingHeartsWidget>
+    with TickerProviderStateMixin {
+
+  late final List<_HeartParticle> _particles;
+
+  @override
+  void initState() {
+    super.initState();
+    final rand = math.Random();
+    _particles = List.generate(15, (i) {
+      final controller = AnimationController(
+        vsync: this,
+        duration: Duration(seconds: 4 + rand.nextInt(5)),
+      );
+      controller.repeat();
+      return _HeartParticle(
+        controller: controller,
+        left: rand.nextDouble(),
+        delay: rand.nextDouble() * 4,
+        speed: 0.5 + rand.nextDouble(),
+        size: 12.0 + rand.nextDouble() * 14,
+        emoji: ['💗', '🌸', '✨', '💕', '🌺'][rand.nextInt(5)],
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    for (final p in _particles) {
+      p.controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Use ScreenUtil for screen dimensions — consistent across devices
+    final screenW = 1.sw;
+    final screenH = 1.sh;
+
+    return Stack(
+      children: _particles.map((p) => AnimatedBuilder(
+        animation: p.controller,
+        builder: (context, child) {
+          final progress = p.controller.value;
+          final yOffset = 1.0 - progress;
+          final opacity = progress < 0.2
+              ? progress / 0.2
+              : progress > 0.8
+              ? (1.0 - progress) / 0.2
+              : 1.0;
+
+          return Positioned(
+            left: screenW * p.left,
+            top: screenH * yOffset,
+            child: Opacity(
+              opacity: (opacity * 0.5).clamp(0.0, 1.0),
+              child: Text(
+                p.emoji,
+                // .sp ensures emoji scales with screen density
+                style: TextStyle(fontSize: p.size.sp),
               ),
             ),
           );

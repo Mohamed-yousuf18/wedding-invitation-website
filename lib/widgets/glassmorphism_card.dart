@@ -1,3 +1,4 @@
+/*
 // ============================================================
 // widgets/glassmorphism_card.dart
 //
@@ -54,6 +55,63 @@ class GlassmorphismCard extends StatelessWidget {
             border: Border.all(
               // Gold-tinted subtle border
               color: AppColors.gold.withValues(alpha:0.18),
+              width: 1,
+            ),
+          ),
+          child: child,
+        ),
+      ),
+    );
+  }
+}*/
+
+
+// ============================================================
+// widgets/glassmorphism_card.dart — ScreenUtil responsive
+// ============================================================
+
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../app/theme/app_theme.dart';
+
+class GlassmorphismCard extends StatelessWidget {
+  final Widget child;
+  final double? width;
+  final double? height;
+  final EdgeInsetsGeometry? padding;
+  final double borderRadius;
+  final double blurAmount;
+
+  const GlassmorphismCard({
+    super.key,
+    required this.child,
+    this.width,
+    this.height,
+    this.padding,
+    this.borderRadius = 12,
+    this.blurAmount = 10,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(borderRadius.r),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: blurAmount,
+          sigmaY: blurAmount,
+        ),
+        child: Container(
+          width: width,
+          height: height,
+          // Use passed padding or default with ScreenUtil
+          padding: padding ?? EdgeInsets.all(20.w),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.05),
+            borderRadius: BorderRadius.circular(borderRadius.r),
+            border: Border.all(
+              color: AppColors.gold.withValues(alpha: 0.18),
               width: 1,
             ),
           ),
